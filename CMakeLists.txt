@@ -1,10 +1,12 @@
 cmake_minimum_required(VERSION 3.10)
-project(HelloOpenMP C)
+
+project(ParallelLab C)
 
 find_package(OpenMP REQUIRED)
+find_package(MPI REQUIRED)
 
 add_executable(hello_openmp hello_openmp.c)
+target_link_libraries(hello_openmp PUBLIC OpenMP::OpenMP_C)
 
-if(OpenMP_C_FOUND)
-    target_link_libraries(hello_openmp PUBLIC OpenMP::OpenMP_C)
-endif()
+add_executable(hello_mpi hello_mpi.c)
+target_link_libraries(hello_mpi PUBLIC MPI::MPI_C)
